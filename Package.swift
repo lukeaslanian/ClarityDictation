@@ -19,8 +19,7 @@ let package = Package(
             dependencies: [],
             path: "ClarityDictation",
             resources: [
-                .process("Assets.xcassets"),
-                .process("Info.plist")
+                .process("Assets.xcassets")
             ])
     ]
 )
