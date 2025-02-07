@@ -17,6 +17,10 @@ let package = Package(
         .executableTarget(
             name: "ClarityDictation",
             dependencies: [],
-            path: "ClarityDictation")
+            path: "ClarityDictation",
+            resources: [
+                .process("Assets.xcassets"),
+                .process("Info.plist")
+            ])
     ]
 )

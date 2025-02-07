@@ -31,10 +31,21 @@ struct PromptEditView: View {
                     .disabled(!isSaveButtonEnabled)
                 }
             }
+            #if os(iOS)
             .navigationBarTitle("Edit Prompt", displayMode: .inline)
             .navigationBarItems(leading: Button("Cancel") {
                 presentationMode.wrappedValue.dismiss()
             })
+            #else
+            .navigationTitle("Edit Prompt")
+            .toolbar {
+                ToolbarItem(placement: .navigation) {
+                    Button("Cancel") {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
+            }
+            #endif
         }
         .onAppear {
             if let prompt = viewModel.prompt {

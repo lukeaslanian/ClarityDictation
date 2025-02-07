@@ -3,7 +3,8 @@ import SwiftUI
 struct SettingsView: View {
     @AppStorage("vibrationEnabled") private var vibrationEnabled = true
     @AppStorage("audioFocusEnabled") private var audioFocusEnabled = true
-    @AppStorage("inputLanguagesArray") private var inputLanguagesArray: [String] = ["en"]
+    @AppStorage("inputLanguagesString") 
+    private var inputLanguagesString: String = "en"
     @AppStorage("currentInputLanguagePos") private var currentInputLanguagePos = 0
     @AppStorage("overlayCharacters") private var overlayCharacters = "()-:!?,."
     @AppStorage("instantOutput") private var instantOutput = false
@@ -16,6 +17,11 @@ struct SettingsView: View {
     @AppStorage("resendButton") private var resendButton = false
     @AppStorage("instantRecording") private var instantRecording = false
     @AppStorage("postProcessingEnabled") private var postProcessingEnabled = true
+
+    private var inputLanguagesArray: [String] {
+        get { inputLanguagesString.components(separatedBy: ",") }
+        set { inputLanguagesString = newValue.joined(separator: ",") }
+    }
 
     private var inputLanguages: Set<String> {
         get { Set(inputLanguagesArray) }

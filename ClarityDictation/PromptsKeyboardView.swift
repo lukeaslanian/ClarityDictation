@@ -59,7 +59,7 @@ struct PromptsKeyboardView: View {
                     .padding()
             }
             
-            List(viewModel.prompts) { prompt in
+            List($viewModel.prompts) { $prompt in
                 Button(action: {
                     selectedPrompt = prompt
                 }) {
