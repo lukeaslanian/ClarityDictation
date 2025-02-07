@@ -22,7 +22,7 @@ struct StylePromptView: View {
             Section {
                 Button(action: {
                     if let url = URL(string: "https://platform.openai.com/docs/guides/speech-to-text/prompting") {
-                        UIApplication.shared.open(url)
+                        openURL(url)
                     }
                 }) {
                     HStack {
@@ -33,6 +33,14 @@ struct StylePromptView: View {
             }
         }
         .navigationBarTitle("Style Prompt")
+    }
+    
+    func openURL(_ url: URL) {
+        #if os(iOS)
+        UIApplication.shared.open(url)
+        #else
+        NSWorkspace.shared.open(url)
+        #endif
     }
 }
 

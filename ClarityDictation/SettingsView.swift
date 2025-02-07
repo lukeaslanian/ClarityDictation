@@ -3,7 +3,7 @@ import SwiftUI
 struct SettingsView: View {
     @AppStorage("vibrationEnabled") private var vibrationEnabled = true
     @AppStorage("audioFocusEnabled") private var audioFocusEnabled = true
-    @AppStorage("inputLanguages") private var inputLanguages: Set<String> = ["en"]
+    @AppStorage("inputLanguagesArray") private var inputLanguagesArray: [String] = ["en"]
     @AppStorage("currentInputLanguagePos") private var currentInputLanguagePos = 0
     @AppStorage("overlayCharacters") private var overlayCharacters = "()-:!?,."
     @AppStorage("instantOutput") private var instantOutput = false
@@ -16,6 +16,11 @@ struct SettingsView: View {
     @AppStorage("resendButton") private var resendButton = false
     @AppStorage("instantRecording") private var instantRecording = false
     @AppStorage("postProcessingEnabled") private var postProcessingEnabled = true
+
+    private var inputLanguages: Set<String> {
+        get { Set(inputLanguagesArray) }
+        set { inputLanguagesArray = Array(newValue) }
+    }
 
     var body: some View {
         NavigationView {
@@ -79,7 +84,7 @@ struct SettingsView: View {
                     Toggle("Enable Post-Processing", isOn: $postProcessingEnabled)
                 }
             }
-            .navigationBarTitle("Settings")
+            .navigationTitle("Settings")
         }
     }
 }

@@ -11,13 +11,15 @@ struct OnboardingView: View {
     var body: some View {
         VStack {
             TabView(selection: $currentPage) {
-                ForEach(0..<pages.count) { index in
+                ForEach(pages.indices, id: \.self) { index in
                     OnboardingPageView(page: pages[index])
                         .tag(index)
                 }
             }
+            #if os(iOS)
             .tabViewStyle(PageTabViewStyle())
             .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+            #endif
 
             HStack {
                 if currentPage > 0 {

@@ -1,7 +1,7 @@
 import SwiftUI
 import AVFoundation
 
-class DictateInputMethodService: ObservableObject {
+class DictateInputMethodService: NSObject, ObservableObject {
     @Published var isRecording = false
     @Published var isPaused = false
     @Published var elapsedTime: TimeInterval = 0
@@ -14,30 +14,33 @@ class DictateInputMethodService: ObservableObject {
     private var audioFileURL: URL?
     
     func startRecording() {
+        #if os(iOS)
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setCategory(.playAndRecord, mode: .default)
             try audioSession.setActive(true)
-            
-            let settings = [
-                AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-                AVSampleRateKey: 44100,
-                AVNumberOfChannelsKey: 2,
-                AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
-            ]
-            
-            audioFileURL = getDocumentsDirectory().appendingPathComponent("recording.m4a")
-            audioRecorder = try AVAudioRecorder(url: audioFileURL!, settings: settings)
-            audioRecorder?.delegate = self
-            audioRecorder?.record()
-            
-            isRecording = true
-            isPaused = false
-            elapsedTime = 0
-            startTimer()
         } catch {
-            infoMessage = "Recording failed: \(error.localizedDescription)"
+            infoMessage = "Audio session setup failed: \(error.localizedDescription)"
+            return
         }
+        #endif
+        
+        let settings = [
+            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+            AVSampleRateKey: 44100,
+            AVNumberOfChannelsKey: 2,
+            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+        ]
+        
+        audioFileURL = getDocumentsDirectory().appendingPathComponent("recording.m4a")
+        audioRecorder = try? AVAudioRecorder(url: audioFileURL!, settings: settings)
+        audioRecorder?.delegate = self
+        audioRecorder?.record()
+        
+        isRecording = true
+        isPaused = false
+        elapsedTime = 0
+        startTimer()
     }
     
     func stopRecording() {
@@ -94,14 +97,7 @@ class DictateInputMethodService: ObservableObject {
         let boundary = UUID().uuidString
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         
-        var body = Data()
-        body.append("--\(boundary)\r\n")
-        body.append("Content-Disposition: form-data; name=\"file\"; filename=\"audio.m4a\"\r\n")
-        body.append("Content-Type: audio/m4a\r\n\r\n")
-        body.append(fileData!)
-        body.append("\r\n--\(boundary)--\r\n")
-        
-        request.httpBody = body
+        request.httpBody = buildMultipartFormData(boundary: boundary, fileData: fileData!)
         
         URLSession.shared.dataTask(with: request) { data, _, error in
             guard let data = data, error == nil else {
@@ -155,6 +151,22 @@ class DictateInputMethodService: ObservableObject {
                 self.infoMessage = "Failed to decode post-processing response"
             }
         }.resume()
+    }
+    
+    private func appendMultipartData(_ body: inout Data, string: String) {
+        if let data = string.data(using: .utf8) {
+            body.append(data)
+        }
+    }
+    
+    private func buildMultipartFormData(boundary: String, fileData: Data) -> Data {
+        var body = Data()
+        appendMultipartData(&body, string: "--\(boundary)\r\n")
+        appendMultipartData(&body, string: "Content-Disposition: form-data; name=\"file\"; filename=\"audio.m4a\"\r\n")
+        appendMultipartData(&body, string: "Content-Type: audio/m4a\r\n\r\n")
+        body.append(fileData)
+        appendMultipartData(&body, string: "\r\n--\(boundary)--\r\n")
+        return body
     }
 }
 
