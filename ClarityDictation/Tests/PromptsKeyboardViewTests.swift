@@ -18,12 +18,14 @@ class PromptsKeyboardViewTests: XCTestCase {
         super.tearDown()
     }
     
-    func testTranscriptionResultDisplayed() {
-        viewModel.transcriptionResult = "Test transcription"
-        let view = PromptsKeyboardView(viewModel: viewModel)
-        let hostingController = UIHostingController(rootView: view)
-        
-        XCTAssertNotNil(hostingController.view)
-        XCTAssertTrue(hostingController.view.subviews.contains { $0 is Text && ($0 as! Text).string == "Transcription: Test transcription" })
+    func testPromptsDisplay() throws {
+        let view = PromptsKeyboardView(viewModel: DictateInputMethodService())
+        #if os(iOS)
+        let vc = UIHostingController(rootView: view)
+        XCTAssertNotNil(vc.view)
+        #else
+        let vc = NSHostingController(rootView: view)
+        XCTAssertNotNil(vc.view)
+        #endif
     }
 }

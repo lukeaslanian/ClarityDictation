@@ -32,7 +32,7 @@ struct StylePromptView: View {
                 }
             }
         }
-        .navigationBarTitle("Style Prompt")
+        .navigationTitle("Style Prompt")
     }
     
     func openURL(_ url: URL) {

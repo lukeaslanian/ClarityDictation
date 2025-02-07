@@ -8,6 +8,7 @@ class DictateInputMethodService: NSObject, ObservableObject {
     @Published var infoMessage: String?
     @Published var transcriptionResult: String?
     @Published var isPostProcessingEnabled = true // Pb58f
+    @Published var prompts: [PromptModel] = []
     
     private var audioRecorder: AVAudioRecorder?
     private var timer: Timer?
