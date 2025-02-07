@@ -17,9 +17,10 @@ let package = Package(
         .executableTarget(
             name: "ClarityDictation",
             dependencies: [],
-            path: "Sources/ClarityDictation"),
+            path: "ClarityDictation"),  // Changed from Sources/ClarityDictation to ClarityDictation
         .testTarget(
             name: "ClarityDictationTests",
-            dependencies: ["ClarityDictation"])
+            dependencies: ["ClarityDictation"],
+            path: "ClarityDictationTests")
     ]
 )
