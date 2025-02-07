@@ -15,6 +15,7 @@ struct SettingsView: View {
     @AppStorage("stylePromptCustomText") private var stylePromptCustomText = ""
     @AppStorage("resendButton") private var resendButton = false
     @AppStorage("instantRecording") private var instantRecording = false
+    @AppStorage("postProcessingEnabled") private var postProcessingEnabled = true // Pa317
 
     var body: some View {
         NavigationView {
@@ -73,6 +74,10 @@ struct SettingsView: View {
                 Section(header: Text("Instant Recording")) {
                     Toggle("Enable Instant Recording", isOn: $instantRecording)
                 }
+
+                Section(header: Text("Post-Processing")) { // Pa317
+                    Toggle("Enable Post-Processing", isOn: $postProcessingEnabled) // Pa317
+                } // Pa317
             }
             .navigationBarTitle("Settings")
         }
