@@ -34,6 +34,7 @@ To install the app, follow these steps:
 2. Follow the onboarding instructions to grant necessary permissions and enter your API key.
 3. Use the keyboard to start, stop, pause, and resume recording.
 4. View the transcription result in the app.
+5. Enable or disable post-processing with GPT-4 in the settings.
 
 ## License
 
