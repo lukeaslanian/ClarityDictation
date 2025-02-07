@@ -86,7 +86,9 @@ class DictateInputMethodService: ObservableObject {
         let whisperAPIEndpoint = "https://api.openai.com/v1/whisper"
         var request = URLRequest(url: URL(string: whisperAPIEndpoint)!)
         request.httpMethod = "POST"
-        request.addValue("Bearer YOUR_API_KEY", forHTTPHeaderField: "Authorization")
+        
+        let apiKey = UserDefaults.standard.string(forKey: "apiKey") ?? ""
+        request.addValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
         
         let fileData = try? Data(contentsOf: audioFileURL)
         let boundary = UUID().uuidString
@@ -127,7 +129,9 @@ class DictateInputMethodService: ObservableObject {
         let gpt4APIEndpoint = "https://api.openai.com/v1/engines/gpt-4/completions"
         var request = URLRequest(url: URL(string: gpt4APIEndpoint)!)
         request.httpMethod = "POST"
-        request.addValue("Bearer YOUR_API_KEY", forHTTPHeaderField: "Authorization")
+        
+        let apiKey = UserDefaults.standard.string(forKey: "apiKey") ?? ""
+        request.addValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let prompt = "Reword the following text: \(transcriptionResult)"
