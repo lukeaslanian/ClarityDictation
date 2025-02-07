@@ -54,6 +54,11 @@ struct PromptsKeyboardView: View {
                     .padding()
             }
             
+            if let transcriptionResult = viewModel.transcriptionResult {
+                Text("Transcription: \(transcriptionResult)")
+                    .padding()
+            }
+            
             List(viewModel.prompts) { prompt in
                 Button(action: {
                     selectedPrompt = prompt

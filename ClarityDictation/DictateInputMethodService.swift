@@ -6,6 +6,7 @@ class DictateInputMethodService: ObservableObject {
     @Published var isPaused = false
     @Published var elapsedTime: TimeInterval = 0
     @Published var infoMessage: String?
+    @Published var transcriptionResult: String? // Pd395
     
     private var audioRecorder: AVAudioRecorder?
     private var timer: Timer?
@@ -44,6 +45,7 @@ class DictateInputMethodService: ObservableObject {
         isRecording = false
         isPaused = false
         stopTimer()
+        transcribeAudio() // P0c47
     }
     
     func pauseRecording() {
@@ -72,6 +74,18 @@ class DictateInputMethodService: ObservableObject {
     private func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
+    }
+    
+    private func transcribeAudio() {
+        guard let audioFileURL = audioFileURL else {
+            infoMessage = "No audio file to transcribe"
+            return
+        }
+        
+        // Placeholder for transcription logic using OpenAI's Whisper
+        // This should include sending the audio file to Whisper and receiving the transcription result
+        // For now, we'll just set a dummy transcription result
+        transcriptionResult = "Transcription result goes here" // P72c4
     }
 }
 

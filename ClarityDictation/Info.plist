@@ -66,5 +66,7 @@
 	<string>$(PRODUCT_NAME) needs access to your Apple Music library to play and manage music.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>$(PRODUCT_NAME) needs access to Face ID for authentication purposes.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access to speech recognition to transcribe audio.</string>
 </dict>
 </plist>
