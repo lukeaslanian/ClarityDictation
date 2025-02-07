@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access to the microphone to record audio.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access to the camera to capture photos and videos.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access to the photo library to save and retrieve photos and videos.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access to your location while the app is in use.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access to your location at all times.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access to Bluetooth to connect to external devices.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access to your contacts to provide personalized features.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access to your calendars to manage events and reminders.</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access to your reminders to create and manage tasks.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access to motion data to provide fitness tracking features.</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access to your health data to provide personalized health insights.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access to update your health data to provide personalized health insights.</string>
+	<key>NSHomeKitUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access to HomeKit to control smart home devices.</string>
+	<key>NSNFCReaderUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access to NFC to read NFC tags.</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access to your Apple Music library to play and manage music.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access to Face ID for authentication purposes.</string>
+</dict>
+</plist>
