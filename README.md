@@ -24,8 +24,8 @@ To install the app, follow these steps:
    open ClarityDictation.xcodeproj
    ```
 3. Set up your OpenAI API key:
-   - Open `ClarityDictation/Info.plist`
-   - Add your OpenAI API key under the key `OpenAIAPIKey`
+   - Open the app and navigate to the settings screen
+   - Enter your OpenAI API key in the "API Key" section
 4. Build and run the app on your iOS device or simulator.
 
 ## Usage

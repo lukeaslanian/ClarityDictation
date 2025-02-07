@@ -8,14 +8,14 @@ struct SettingsView: View {
     @AppStorage("overlayCharacters") private var overlayCharacters = "()-:!?,."
     @AppStorage("instantOutput") private var instantOutput = false
     @AppStorage("outputSpeed") private var outputSpeed = 5
-    @AppStorage("apiKey") private var apiKey = ""
+    @AppStorage("apiKey") private var apiKey = UserDefaults.standard.string(forKey: "apiKey") ?? ""
     @AppStorage("customApiHost") private var customApiHost = ""
     @AppStorage("customApiHostEnabled") private var customApiHostEnabled = false
     @AppStorage("stylePromptSelection") private var stylePromptSelection = 1
     @AppStorage("stylePromptCustomText") private var stylePromptCustomText = ""
     @AppStorage("resendButton") private var resendButton = false
     @AppStorage("instantRecording") private var instantRecording = false
-    @AppStorage("postProcessingEnabled") private var postProcessingEnabled = true // Pa317
+    @AppStorage("postProcessingEnabled") private var postProcessingEnabled = true
 
     var body: some View {
         NavigationView {
@@ -75,9 +75,9 @@ struct SettingsView: View {
                     Toggle("Enable Instant Recording", isOn: $instantRecording)
                 }
 
-                Section(header: Text("Post-Processing")) { // Pa317
-                    Toggle("Enable Post-Processing", isOn: $postProcessingEnabled) // Pa317
-                } // Pa317
+                Section(header: Text("Post-Processing")) {
+                    Toggle("Enable Post-Processing", isOn: $postProcessingEnabled)
+                }
             }
             .navigationBarTitle("Settings")
         }
